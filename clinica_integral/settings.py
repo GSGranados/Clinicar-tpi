@@ -86,8 +86,8 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
         'NAME': 'integral_db',
-        'USER': 'user', # Usuario de su SGBD
-        'PASSWORD': 'password', # Contraseña de su SGBD
+        'USER': 'root', # Usuario de su SGBD
+        'PASSWORD': '', # Contraseña de su SGBD
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -132,6 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [
+    os.path.join (BASE_DIR,"static"),]
 DATE_INPUT_FORMATS = ('%m/%d/%Y')
 DATETIME_INPUT_FORMATS = ('%m/%d/%Y %H:%M:%S %p')

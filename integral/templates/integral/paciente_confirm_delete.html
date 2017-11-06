@@ -1,0 +1,5 @@
+<form method="post">{% csrf_token %}
+    ¿Estás seguro que deseas borrar el paciente "{{ object }}"?
+    <input type="submit" value="SI" />
+    <a href="{% url 'integral:listarPaciente' %}">No</a>
+</form>

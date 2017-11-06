@@ -1,0 +1,68 @@
+{% extends 'integral/base.html' %}
+{% load staticfiles %}
+{% block content %}
+	<div class="container">
+  <h2>Asignación de Espedientes</h2>
+  <p></p>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">BUSCAR</a></li>
+    <li><a data-toggle="tab" href="#menu1">NUEVO</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>Buscar</h3>
+      <table class="table-bordered">
+      	<tr>
+      		<td>ID</td>
+      		<td>Paciente</td>
+      		<td>Fecha de apertura</td>
+      		<td>Editar</td>
+      		<td>Eliminar</td>
+      	</tr>
+       {% for expedientes in expedientes %}
+        <tr>
+          <td>{{expedientes.id}}</td>
+          <td>{{expedientes.paciente}}</td>
+          <td>{{expedientes.fecha_apertura}}</td>
+          <td><span class="glyphicon glyphicon-edit"></span><button>Editar</button></td>
+          <td><span class="glyphicon glyphicon-remove"></span><a href="/expediente/{{expedientes.id}}">Eliminar</a></td>
+        </tr>
+        {% endfor%}
+        <div class="pagination">
+          <span class="step-links">
+            {% if expedientes.has_previous %}
+            <a href="?page={{ expedientes.previous_page_number }}">Anterior</a>
+            {% endif %}
+            <span class="current">
+              Página {{expedientes.number}} de {{expedientes.paginator.num_pages}}.
+            </span>
+            {% if expedientes.has_next %}
+              <a href="?page={{expedientes.next_page_number}}">Siguiente</a>
+            {% endif %}
+          </span>
+        </div>
+      </table>
+      <p></p>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Registrar nuevo paciente</h3>
+      	<div>
+			<div id="nuevoExpediente">
+				<form action="" method="post" id="nuevoExpedienteForm">
+					{% csrf_token %}
+					{{form.as_p}}
+					<input type="submit" value="Guardar">
+				</form>
+			</div>
+		<div id="resultado">
+	</div>
+    </div>
+  </div>
+  </script>
+</head>
+<body>
+<div id="dialog-confirm" title="Empty the recycle bin?">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>El registro será eliminado y no se podrá recuperar. Esta seguro?</p>
+</div>
+</div>
+{% endblock content %}

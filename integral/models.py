@@ -13,7 +13,7 @@ class Paciente(models.Model):
     fecha_nacimiento = models.DateField('Fecha de nacimiento', help_text='Formato: DD/MM/AAAA', blank = False, null = False)
     telefono = models.CharField('Número de teléfono', max_length = 9, help_text='Formato: XXXX-XXXX', blank = False, null = False, unique = True)
     direccion = models.CharField('Dirección', max_length = 80, help_text='Dirección de su residencia', blank = False, null = False)
-
+    
     def __str__(self):
         return '{} {}'.format(self.apellido, self.nombre)
 
