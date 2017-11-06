@@ -8,7 +8,6 @@ SEXO_CHOICES = (
 
 
 class Paciente(models.Model):
-<<<<<<< HEAD
     nombre = models.CharField('Nombres del paciente', max_length=40, blank=False, null=False)
     apellido = models.CharField('Apellidos del paciente', max_length=40, blank=False, null=False)
     sexo = models.CharField('Sexo', max_length=1, choices=SEXO_CHOICES, blank=False, null=False)
@@ -16,15 +15,6 @@ class Paciente(models.Model):
     telefono = models.CharField('Número de teléfono', max_length=9, help_text='Formato: XXXX-XXXX', blank=False, null=False, unique=True)
     direccion = models.CharField('Dirección', max_length=80, help_text='Dirección de su residencia', blank=False, null=False)
 
-=======
-    nombre = models.CharField('Nombres del paciente', max_length = 40, blank = False, null = False)
-    apellido = models.CharField('Apellidos del paciente', max_length = 40, blank = False, null =False)
-    sexo = models.CharField('Sexo', max_length = 1, choices=SEXO_CHOICES, blank = False, null = False)
-    fecha_nacimiento = models.DateField('Fecha de nacimiento', help_text='Formato: DD/MM/AAAA', blank = False, null = False)
-    telefono = models.CharField('Número de teléfono', max_length = 9, help_text='Formato: XXXX-XXXX', blank = False, null = False, unique = True)
-    direccion = models.CharField('Dirección', max_length = 80, help_text='Dirección de su residencia', blank = False, null = False)
-    
->>>>>>> 84e670414a9532b693934237cb76894cb03df97f
     def __str__(self):
         return '{} {}'.format(self.apellido, self.nombre)
 

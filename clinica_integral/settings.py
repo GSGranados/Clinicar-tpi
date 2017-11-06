@@ -91,13 +91,8 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
         'NAME': 'integral_db',
-<<<<<<< HEAD
         'USER': 'root',  # Usuario de su SGBD
         'PASSWORD': 'activo23',  # Contraseña de su SGBD
-=======
-        'USER': 'root', # Usuario de su SGBD
-        'PASSWORD': '', # Contraseña de su SGBD
->>>>>>> 84e670414a9532b693934237cb76894cb03df97f
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -148,16 +143,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 STATIC_URL = '/static/'
-<<<<<<< HEAD
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = '/'
 
-=======
-STATICFILES_DIRS = [
-    os.path.join (BASE_DIR,"static"),]
->>>>>>> 84e670414a9532b693934237cb76894cb03df97f
 DATE_INPUT_FORMATS = ('%m/%d/%Y')
 DATETIME_INPUT_FORMATS = ('%m/%d/%Y %H:%M:%S %p')
