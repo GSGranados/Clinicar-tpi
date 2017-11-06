@@ -1,0 +1,11 @@
+{% extends 'integral/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<h3>{{ paciente }}</h3>
+<p>Fecha Nacimiento: {{ paciente.fecha_nacimiento }}</p>
+<p>Telefono:{{ paciente.telefono }}</p>
+<p>Direccion:{{ paciente.direccion }}</p>
+    <a href="{% url "integral:listarPaciente" %}">Regresar</a>
+</p>
+{% endblock content %}

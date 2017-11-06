@@ -1,0 +1,18 @@
+{% extends 'integral/base.html' %}
+{% load staticfiles %}
+{% block content %}
+	<div class="container">
+    <a href="{% url 'integral:listarPaciente' %}">Regresar</a>
+  <p>Nuevo paciente:</p>
+      <p>PASO 1:REGISTRE EL NUEVO PACIENTE</p>
+			<div id="nuevoPacient">
+				<form action="" method="post" id="nuevoPacienteForm">
+					{% csrf_token %}
+					{{form.as_p}}
+					<input type="submit" value="Guardar" id="btnGuardarPaciente">
+				</form>
+			</div>
+        <div id="asigExp"></div>
+		<div id="antecedentes"></div>
+ </div>
+{% endblock content %}

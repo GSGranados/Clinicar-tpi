@@ -1,0 +1,10 @@
+{% extends 'integral/base.html' %}
+{% load staticfiles %}
+{% block content %}
+	<div>
+		<h1>menu</h1>
+		<ul>
+			<li><a href="{% url 'integral:listarPaciente' %}">Paciente</a></li>
+		</ul>
+	</div>
+{% endblock content %}
