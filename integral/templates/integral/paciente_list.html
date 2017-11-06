@@ -1,9 +1,18 @@
 
-{% extends 'integral/base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<p style="color: green"> <u>{{ message }}</u></p>
+    {% else %}
+<p style="color: red"><u>{{ message }}</u> </p>
+{% endif %}
+{% endfor %}
+{% endif %}
 <p>
-    <a href="{% url 'integral:nuevoPaciente' %}">Agregar paciente</a>
+    <a class="button" href="{% url 'integral:nuevoPaciente' %}">Agregar paciente</a>
 </p>
 <table>
 	<tr>
@@ -20,9 +29,9 @@
             <td>{{ paciente.fecha_nacimiento}}</td>
             <td>{{ paciente.telefono}}</td>
             <td>{{ paciente.direccion}}</td>
-            <td><a href="{% url 'integral:detallePaciente' paciente.id %}">Ver</a></td>
-            <td><a href="{% url 'integral:eliminarPaciente' paciente.id %}">Eliminar</a></td>
+            <td><a class="button" href="{% url 'integral:detallePaciente' paciente.id %}">Ver</a></td>
+            <td><a class="button" href="{% url 'integral:eliminarPaciente' paciente.id %}">Eliminar</a></td>
         </tr>
-    {% endfor %}	
+    {% endfor %}
 </table>
 {% endblock content %}

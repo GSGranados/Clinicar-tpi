@@ -1,18 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse_lazy
 from .models import Paciente, Expediente, Antecedente
 from .forms import nuevoPacienteForm, nuevoExpedienteForm, nuevoAntecedenteForm
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 import json
+from django.contrib import messages
 
 # Create your views here.
 
+
 def index(request):
 	return render(request, 'integral/index.html',{})
+
 
 def nuevoPaciente(request):
 	pacientes = Paciente.objects.all()
@@ -31,12 +34,15 @@ def nuevoPaciente(request):
 			ultimoPaciente = Paciente.objects.first()
 			Expediente.objects.create(paciente = ultimoPaciente)
 			formAntecedente = nuevoAntecedenteForm()
+			messages.success(request, 'Tu paciente correctamente guardado!')
+			return redirect('integral:listarPaciente')
 		else:
 			data = json.dumps([v for k , v in form.errors.items()]+[' ¡Error!'])
 			return HttpResponse(data, content_type='application/json')
 	else:
 		form = nuevoPacienteForm()
-	return render(request, 'integral/nuevoPaciente.html',{'form': form,'pacientes':pacientes})
+	return render(request, 'integral/nuevoPaciente.html', {'form': form,'pacientes':pacientes})
+
 
 def expediente(request):
 	expedientes = Expediente.objects.all()
@@ -74,5 +80,5 @@ class PacienteDelete(DeleteView):
 	model = Paciente
 	success_url = reverse_lazy('integral:listarPaciente')
 
-#class AntecedenteList(ListView):
-#	model = Antecedente
+# class AntecedenteList(ListView):
+# model = Antecedente

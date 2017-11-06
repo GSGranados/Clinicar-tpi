@@ -1,6 +1,7 @@
 from django import forms
 from .models import Paciente, Expediente, Antecedente
 
+
 class nuevoPacienteForm(forms.ModelForm):
 	class Meta:
 		model = Paciente
@@ -29,6 +30,7 @@ class nuevoPacienteForm(forms.ModelForm):
 			'direccion': forms.Textarea(),
 		}
 
+
 class nuevoExpedienteForm(forms.ModelForm):
 	class Meta:
 		model = Expediente
@@ -39,8 +41,9 @@ class nuevoExpedienteForm(forms.ModelForm):
 			'paciente': 'Paciente',
 		}
 		widget = {
-			'paciente': forms.Select(),			
+			'paciente': forms.Select(),
 		}
+
 
 class nuevoAntecedenteForm(forms.ModelForm):
 	class Meta:

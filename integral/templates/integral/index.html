@@ -1,10 +1,10 @@
-{% extends 'integral/base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
 	<div>
-		<h1>menu</h1>
+		<h2>Menu</h2>
 		<ul>
-			<li><a href="{% url 'integral:listarPaciente' %}">Paciente</a></li>
+			<li><a class="button" href="{% url 'integral:listarPaciente' %}">Pacientes</a></li>
 		</ul>
 	</div>
 {% endblock content %}
