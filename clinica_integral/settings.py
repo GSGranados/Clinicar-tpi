@@ -25,8 +25,9 @@ SECRET_KEY = '@m(5%s_f5=%x@=&$7wja8q=tcx&@+#r82bnm9t$&72*q%@(o@t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
+AUTH_USER_MODEL = 'myauth.MyUser'
 
 # Application definition
 
@@ -38,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #Apps de terceros
+    # Apps de terceros
     'bootstrap3',
-    
+
     # Mis apps
     'integral',
+    'myauth',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'clinica_integral.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR + '/templates/', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,10 +70,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
 ]
+
+SITE_NAME = 'Medicina Integrada'
 
 WSGI_APPLICATION = 'clinica_integral.wsgi.application'
 
@@ -86,8 +91,8 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
         'NAME': 'integral_db',
-        'USER': 'user', # Usuario de su SGBD
-        'PASSWORD': 'password', # Contraseña de su SGBD
+        'USER': 'root',  # Usuario de su SGBD
+        'PASSWORD': 'activo23',  # Contraseña de su SGBD
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -119,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'es-SV'
 
 # TIME_ZONE = 'UTC-06:00' #Para los que utilizan Windows
-TIME_ZONE = 'America/El_Salvador' #Para los que utilizan Linux
+TIME_ZONE = 'America/El_Salvador'  # Para los que utilizan Linux
 
 USE_I18N = True
 
@@ -130,8 +135,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 STATIC_URL = '/static/'
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = '/'
 
 DATE_INPUT_FORMATS = ('%m/%d/%Y')
 DATETIME_INPUT_FORMATS = ('%m/%d/%Y %H:%M:%S %p')
