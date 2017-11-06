@@ -31,7 +31,6 @@ def nuevoPaciente(request):
 			ultimoPaciente = Paciente.objects.first()
 			Expediente.objects.create(paciente = ultimoPaciente)
 			formAntecedente = nuevoAntecedenteForm()
-			return HttpResponse("<p>Paciente guardado y expediente asignado!!!</p><br><p>PASO 2:INGRESE ANTECEDENTES</p><br>"+formAntecedente.as_p()+"<br><input type=submit value='Guardar Antecedente' id='btnGuardarAntecedente'></input><input type=submit value='Ver Antecedentess' id='btnObtenerAntecedentes'></input>")
 		else:
 			data = json.dumps([v for k , v in form.errors.items()]+[' ¡Error!'])
 			return HttpResponse(data, content_type='application/json')
